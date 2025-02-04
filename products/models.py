@@ -9,7 +9,10 @@ class Brand(models.Model):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=255)
+    title_fa = models.CharField(max_length=255)
+    title_en = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='images/')
+    is_in_slider = models.BooleanField(default=False)
     parent = models.ForeignKey(
         'self', on_delete=models.CASCADE, null=True, blank=True, related_name='children'
     )

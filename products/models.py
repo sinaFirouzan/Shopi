@@ -26,7 +26,7 @@ class Category(models.Model):
         verbose_name_plural = "Categories"
 
     def __str__(self):
-        return f"{self.parent.name + ' > ' if self.parent else ''}{self.name}"
+        return f"{self.parent.title_fa + ' > ' if self.parent else ''}{self.title_fa}"
 
 
 # Create your models here.
@@ -36,6 +36,7 @@ class Product(models.Model):
     quantity = models.IntegerField()
     price_with_discount = models.DecimalField(max_digits=10, decimal_places=2)
     price_without_discount = models.DecimalField(max_digits=10, decimal_places=2)
+    discount = models.DecimalField(max_digits=5, decimal_places=2)
     description = models.TextField()
 
     is_active = models.BooleanField(default=True)

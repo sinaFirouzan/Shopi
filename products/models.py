@@ -1,6 +1,11 @@
 from django.db import models
 
 
+class Images(models.Model):
+    image = models.ImageField(upload_to='images/')
+    alt = models.CharField(max_length=100)
+
+
 class Brand(models.Model):
     title_fa = models.CharField(max_length=100)
     title_en = models.CharField(max_length=100)
@@ -37,6 +42,8 @@ class Product(models.Model):
     is_in_slider = models.BooleanField(default=False)
 
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='images/')
     color = models.CharField(max_length=255)
 
     date_added = models.DateField(auto_now_add=True)

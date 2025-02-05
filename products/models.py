@@ -12,6 +12,9 @@ class Brand(models.Model):
     image = models.ImageField(upload_to='images/')
     is_in_slider = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.title_en
+
 
 class Category(models.Model):
     title_fa = models.CharField(max_length=255)
@@ -47,7 +50,7 @@ class Product(models.Model):
     image = models.ImageField(upload_to='images/')
     color = models.CharField(max_length=255)
 
-    date_added = models.DateField(auto_now_add=True)
+    added_time = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
         return f"{self.title_fa}"

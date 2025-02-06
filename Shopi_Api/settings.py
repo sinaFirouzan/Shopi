@@ -43,7 +43,8 @@ INSTALLED_APPS = [
 
     # apps
     'products',
-    'banners'
+    'banners',
+    'users'
 ]
 
 MIDDLEWARE = [

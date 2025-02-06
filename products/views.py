@@ -62,5 +62,3 @@ def get_brands(request):
     brands = Brand.objects.all()
     serializer = BrandSerializer(brands, many=True)
     return Response(serializer.data)
-
-

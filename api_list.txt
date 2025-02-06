@@ -1,12 +1,14 @@
 /api/products/	[get]	all products
 /api/products/?category=<name-en>	[get]	filter products by category
-/api/products/?query=<search>   [get]   search products with query
-/api/products/?sort=price_asc	[get]	sort products with low to high price
-/api/products/?sort=price_desc	[get]	sort products with high to low price
-/api/products/?sort=newer	    [get]	sort products with new to old price
-/api/products/?count=<int>	    [get]	filter how many products you need
-/api/products/?hero_slider=true	[get]	hero slider products
-/api/sliders/banners/		    [get]	all active banners
-/api/sliders/categories/	    [get]	all in-slider categories
-/api/sliders/brands/            [get]   all in-slider brand
+/api/products/?query=<search>       [get]   search products with query
+/api/products/?sort=price_asc	    [get]	sort products with low to high price
+/api/products/?sort=price_desc  	[get]	sort products with high to low price
+/api/products/?sort=newer	        [get]	sort products with new to old price
+/api/products/?count=<int>	        [get]	filter how many products you need
+/api/products/?hero_slider=true	    [get]	hero slider products
+/api/products/get_brands/           [get]   get all brands (for header and search)
+/api/products/get_categories/       [get]   get all categories (for header and search)
+/api/sliders/banners/		        [get]	all active banners
+/api/sliders/categories/	        [get]	all in-slider categories
+/api/sliders/brands/                [get]   all in-slider brand
 

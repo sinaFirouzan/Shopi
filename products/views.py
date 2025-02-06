@@ -4,8 +4,8 @@ from rest_framework.decorators import api_view
 
 from banners.models import Banner
 from banners.serializers import BannerSerializer
-from products.models import Product, Category
-from products.serializers import ProductSerializer
+from products.models import Product, Category, Brand
+from products.serializers import ProductSerializer, CategorySerializer, BrandSerializer
 
 
 # filter, sort and get products
@@ -13,6 +13,11 @@ from products.serializers import ProductSerializer
 def get_products(request):
     products = Product.objects.all()
     products = products.order_by('-id')
+
+    # search filter
+    query = request.GET.get('query')
+    if query:
+        products = products.filter(title_fa__icontains=query)
 
     # category filter
     category = request.GET.get('category')
@@ -40,6 +45,22 @@ def get_products(request):
     if count:
         products = products[:int(count)]
     serializer = ProductSerializer(products, many=True)
+    return Response(serializer.data)
+
+
+# get all categories
+@api_view(['GET'])
+def get_categories(request):
+    categories = Category.objects.all()
+    serializer = CategorySerializer(categories, many=True)
+    return Response(serializer.data)
+
+
+# get all brands
+@api_view(['GET'])
+def get_brands(request):
+    brands = Brand.objects.all()
+    serializer = BrandSerializer(brands, many=True)
     return Response(serializer.data)
 
 

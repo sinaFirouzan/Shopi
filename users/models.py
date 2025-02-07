@@ -3,11 +3,8 @@ from django.db import models
 
 
 class CustomUserManager(BaseUserManager):
-    def create_user(self, username, email, password=None, **extra_fields):
-        if not email:
-            raise ValueError('The Email field must be set')
-        email = self.normalize_email(email)
-        user = self.model(username=username, email=email, **extra_fields)
+    def create_user(self, username, password=None, **extra_fields):
+        user = self.model(username=username, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
@@ -27,8 +24,7 @@ class CustomUserManager(BaseUserManager):
 class User(AbstractUser, PermissionsMixin):
     username = models.CharField(unique=True, max_length=255, null=True, blank=True)
     password = models.CharField(max_length=255, null=True, blank=True)
-    email = models.EmailField(unique=True, blank=True)
-    date_of_joining = models.DateField(auto_now_add=True)
+    email = models.EmailField(unique=True, blank=True, null=True)
     phone = models.CharField(max_length=20, blank=True)
     objects = CustomUserManager()
 
@@ -50,3 +46,12 @@ class User(AbstractUser, PermissionsMixin):
 
     def __str__(self):
         return self.username
+
+
+class VerificationCode(models.Model):
+    number = models.CharField(max_length=20)
+    code = models.CharField(max_length=4)
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.number

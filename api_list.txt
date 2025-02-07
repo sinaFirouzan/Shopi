@@ -11,4 +11,6 @@
 /api/sliders/banners/		        [get]	all active banners
 /api/sliders/categories/	        [get]	all in-slider categories
 /api/sliders/brands/                [get]   all in-slider brand
-
+/api/users/logout/                  [get]   log out url
+/api/users/generate_code/?number=<number>   [get]   you enter phone number and get a json with a code and your phone
+/api/users/verify_code/?number=<number>&code=<code>     [get]   you must enter 2 argument and you get a json with status:('signed in'/'logged in'/'wrong code')
